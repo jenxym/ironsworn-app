@@ -17,6 +17,7 @@
     <div class="editor-content">
       <editor-content :editor="editor" />
     </div>
+    <button v-on:click="saveContent()">SAVE</button>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ export default {
       <h1>Título</h1>
       <p>Introduce texto...</p>`,
     },
+    //not developed
     advancedEditor: {
       type: Boolean,
       default: true,
@@ -59,18 +61,22 @@ export default {
           new CodeBlock(),
         ],
         content: this.textDefault,
-        // `
-        // <h1>Yo soy un título</h1>
-        // <p>Soy un párrafo :D</p>
-        // <pre><code>Soy u códugo</code></pre>
-        // `,
       }),
+      editorContent: this.textDefault,
     };
   },
-  // mounted() {
-  //   console.log(this.editor);
-  //   console.log(this.editor.view.dom);
-  // },
+  //debug variables
+  mounted() {
+    console.log(this.editor);
+    console.log(this.editor.view.dom.innerHTML);
+  },
+  methods: {
+    saveContent() {
+      this.editorContent = this.editor.view.dom.innerHTML;
+      // save process not developed
+      console.log("Saved")
+    }
+  },
   beforeDestroy() {
     this.editor.destroy();
   },
@@ -112,5 +118,9 @@ export default {
   color: #fff;
   font-size: 16px;
   overflow-x: auto;
+}
+
+.editor-content h1, .editor-content h2, .editor-content h3 {
+  margin-top: 0;
 }
 </style>

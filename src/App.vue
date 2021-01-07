@@ -30,7 +30,9 @@ export default {
   max-width: 600px;
   margin: 0 auto;
 }
-
+div p {
+  margin: 0;
+}
 #nav {
   padding: 30px;
 }
